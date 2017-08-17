@@ -57,7 +57,7 @@ class Controller
     public function getGamerById($id)
     {
         $response = $this->httpClient->getResponseInterceptor()->single($this->httpClient->fetchGamerById($id));
-        
+
         return $this->response->setData($response);
     }
 }

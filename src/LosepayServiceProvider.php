@@ -14,7 +14,7 @@ class LosepayServiceProvider extends ServiceProvider {
                 'base_uri' => 'http://losepay.engridapps.com/v1/'
             );
             
-            return  new HttpClient(new Client(), new ResponseInterceptor());
+            return  new HttpClient(new Client($options), new ResponseInterceptor());
         });
     }
     
