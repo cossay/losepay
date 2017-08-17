@@ -4,8 +4,7 @@ namespace Losepay\Http\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Losepay\Http\HttpClient;
-use GuzzleHttp;
-use GuzzleHttp;
+use GuzzleHttp\Psr7\Response as GuzzleResponse;
 
 class Controller
 {
@@ -49,7 +48,7 @@ class Controller
         $response = $this->httpClient->fetchGamers()->wait();
         $data = null;
         
-        if ($response instanceof GuzzleHttp\Psr7\Response) {
+        if ($response instanceof GuzzleResponse) {
             $data = json_decode($response->getBody()->getContents());
         }
         
@@ -67,7 +66,7 @@ class Controller
         
         $data = null;
         
-        if ($response instanceof GuzzleHttp\Psr7\Response) {
+        if ($response instanceof GuzzleResponse) {
             $data = json_decode($response->getBody()->getContents());
         }
         
