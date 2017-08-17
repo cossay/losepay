@@ -10,10 +10,10 @@
         }
     ],
     "require": {
-        "symfony/http-foundation": "^4.0@dev",
-        "guzzlehttp/guzzle": "^6.2@dev",
-        "danielstjules/stringy": "dev-master",
-        "illuminate/support": "^5.5@dev"
+        "symfony/http-foundation": "*",
+        "guzzlehttp/guzzle": "*",
+        "danielstjules/stringy": "*",
+        "illuminate/support": "*"
     },
     "autoload": {
         "psr-4": {
