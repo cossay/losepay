@@ -1,3 +1,4 @@
 <?php
 
-Route::get('losepay', 'Losepay\Http\Controller\Controller@getGamers');
+Route::get('gamers', 'Losepay\Http\Controller\Controller@getGamers');
+Route::get('gamers/{id}', 'Losepay\Http\Controller\Controller@getGamers');

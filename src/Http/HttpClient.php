@@ -38,9 +38,9 @@ class HttpClient
     }
 
     /**
-     *
-     * @param number $limit
-     * @param number $offset
+     * Fetches a number of gamers
+     * @param int $limit
+     * @param int $offset
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
     public function fetchGamers($limit = 1000, $offset = 0)
@@ -51,5 +51,15 @@ class HttpClient
         );
         
         return $this->_client->getAsync($this->createUrl('gamers'), $this->options);
+    }
+
+    /**
+     * Fetces a single gamer by its unique Id
+     * @param int $id
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function fetchGamerById($id)
+    {
+        return $this->_client->getAsync(sprintf('gamers/%d', $id));
     }
 }

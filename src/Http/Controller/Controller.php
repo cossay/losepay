@@ -5,6 +5,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Losepay\Http\HttpClient;
 use GuzzleHttp;
+use GuzzleHttp;
 
 class Controller
 {
@@ -48,7 +49,25 @@ class Controller
         $response = $this->httpClient->fetchGamers()->wait();
         $data = null;
         
-        if($response instanceof GuzzleHttp\Psr7\Response) {
+        if ($response instanceof GuzzleHttp\Psr7\Response) {
+            $data = json_decode($response->getBody()->getContents());
+        }
+        
+        return $this->response->setData($data);
+    }
+
+    /**
+     * 
+     * @param int $id
+     * @return \Symfony\Component\HttpFoundation\JsonResponse
+     */
+    public function getGamerById($id)
+    {
+        $response = $this->httpClient->fetchGamerById($id)->wait();
+        
+        $data = null;
+        
+        if ($response instanceof GuzzleHttp\Psr7\Response) {
             $data = json_decode($response->getBody()->getContents());
         }
         
