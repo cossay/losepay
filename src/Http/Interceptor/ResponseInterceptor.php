@@ -23,12 +23,11 @@ class ResponseInterceptor
         $response = new InterceptedResponse();
         
         try {
-            $tempResponse = $promise->wait();
-            $response = new InterceptedResponse($tempResponse);
+            $response = new InterceptedResponse($promise->wait());
         } catch (ClientException $exception) {
-            return new InterceptedResponse($exception->getResponse());
+            $response = new InterceptedResponse($exception->getResponse());
         } catch (ServerException $exception) {
-            return new InterceptedResponse($exception->getResponse());
+            $response = new InterceptedResponse($exception->getResponse());
         } catch (Exception $exception) {
             $response->setCode(Response::HTTP_INTERNAL_SERVER_ERROR);
             $response->setMessage($exception->getMessage());
