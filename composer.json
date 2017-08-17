@@ -1,0 +1,18 @@
+{
+    "name": "cosman/losepay",
+    "description": "Test package",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Agbitor Cosman",
+            "email": "cosman2008@rocketmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "symfony/http-foundation": "^4.0@dev",
+        "guzzlehttp/guzzle": "^6.2@dev",
+        "danielstjules/stringy": "dev-master"
+    }
+}
