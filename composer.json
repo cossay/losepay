@@ -9,7 +9,7 @@
             "email": "cosman2008@rocketmail.com"
         }
     ],
-    "minimum-stability": "dev",
+    "minimum-stability": "dev-master",
     "require": {
         "symfony/http-foundation": "^4.0@dev",
         "guzzlehttp/guzzle": "^6.2@dev",
