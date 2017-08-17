@@ -131,6 +131,6 @@ class InterceptedResponse implements \JsonSerializable
      */
     public function jsonSerialize()
     {
-        return json_encode($this);
+        return get_object_vars($this);
     }
 }
