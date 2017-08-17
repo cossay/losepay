@@ -34,7 +34,7 @@ class HttpClient
      */
     protected function createUrl($url_fragment)
     {
-        return sprintf('%s/%s', $this->base_url, $url_fragment);
+        return sprintf('%s%s', $this->base_url, $url_fragment);
     }
 
     /**
@@ -45,7 +45,7 @@ class HttpClient
      */
     public function fetchGamers($limit = 1000, $offset = 0)
     {
-        $this->options['params'] = array(
+        $this->options['query'] = array(
             'limit' => $limit,
             'offset' => $offset
         );
