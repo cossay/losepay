@@ -12,4 +12,8 @@ class LosepayServiceProvider extends ServiceProvider {
             return  new HttpClient(new Client(), 'http://losepay.engridapps.com/v1/');
         });
     }
+    
+    public function boot() {
+        require_once __DIR__.'/routes/routes.php';
+    }
 }
