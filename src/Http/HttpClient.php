@@ -2,15 +2,10 @@
 namespace Losepay\Http;
 
 use GuzzleHttp\Client;
+use Losepay\Http\Interceptor\ResponseInterceptor;
 
 class HttpClient
 {
-
-    /**
-     *
-     * @var string
-     */
-    private $base_url;
 
     /**
      *
@@ -18,28 +13,48 @@ class HttpClient
      */
     private $_client;
 
-    protected $options = array();
-
-    public function __construct(Client $client, $base_url = null)
-    {
-        $this->_client = $client;
-        
-        $this->base_url = $base_url;
-    }
+    /**
+     *
+     * @var ResponseInterceptor
+     */
+    private $responseInterceptor;
 
     /**
      *
-     * @param string $url_fragment
-     * @return string
+     * @var array
      */
-    protected function createUrl($url_fragment)
+    protected $options = array();
+
+    public function __construct(Client $client, ResponseInterceptor $responseInterceptor)
     {
-        return sprintf('%s%s', $this->base_url, $url_fragment);
+        $this->_client = $client;
+        
+        $this->responseInterceptor = $responseInterceptor;
+    }
+
+    /**
+     * Return http response interceptor
+     *
+     * @return \Losepay\Http\Interceptor\ResponseInterceptor
+     */
+    public function getResponseInterceptor()
+    {
+        return $this->responseInterceptor;
+    }
+
+    /**
+     * Sets http response interceptor
+     *
+     * @param ResponseInterceptor $interceptor
+     */
+    public function setResponseInterceptor(ResponseInterceptor $interceptor)
+    {
+        $this->responseInterceptor = $interceptor;
     }
 
     /**
      * Fetches a number of gamers
-     * 
+     *
      * @param int $limit
      * @param int $offset
      * @return \GuzzleHttp\Promise\PromiseInterface
@@ -51,17 +66,17 @@ class HttpClient
             'offset' => $offset
         );
         
-        return $this->_client->getAsync($this->createUrl('gamers'), $this->options);
+        return $this->_client->getAsync('gamers', $this->options);
     }
 
     /**
      * Fetces a single gamer by its unique Id
-     * 
+     *
      * @param int $id
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
     public function fetchGamerById($id)
     {
-        return $this->_client->getAsync($this->createUrl(sprintf('gamers/%d', $id)));
+        return $this->_client->getAsync(sprintf('gamers/%d', $id));
     }
 }
